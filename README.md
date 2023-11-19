@@ -1,6 +1,9 @@
 markdown-gfm-admonition
 =======================
 
+[![PyPI][PyPI badge]][PyPI]
+[![GitHub Actions status][GitHub Actions status badge]][GitHub Actions status]
+
 This package is an extension of [Python Markdown] that enables
 the [admonition syntax of GitHub Flavored Markdown][1].
 
@@ -35,6 +38,10 @@ even when skimming.</p>
 </div>
 ~~~~
 
+[PyPI badge]: https://img.shields.io/pypi/v/markdown-gfm-admonition
+[PyPI]: https://pypi.org/project/markdown-gfm-admonition/
+[GitHub Actions status badge]: https://github.com/dahlia/markdown-gfm-admonition/actions/workflows/build.yaml/badge.svg
+[GitHub Actions status]: https://github.com/dahlia/markdown-gfm-admonition/actions/workflows/build.yaml
 [Python Markdown]: https://github.com/Python-Markdown/markdown
 [1]: https://github.com/orgs/community/discussions/16925
 [2]: https://python-markdown.github.io/extensions/admonition/
