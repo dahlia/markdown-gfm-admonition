@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools >= 61.2"]
+
+[project]
+name = "markdown-gfm-admonition"
+version = "0.1.0"
+description = "GFM admonition syntax for Python Markdown"
+readme = "README.md"
+authors = [
+  { name = "Hong Minhee", email = "hong@minhee.org" }
+]
+license = { file = "LICENSE" }  # LGPL-3.0-or-later
+requires-python = ">= 3.8"
+dependencies = [
+  "Markdown >= 3.2"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Software Development :: Documentation",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing :: Filters",
+  "Topic :: Text Processing :: Markup :: HTML",
+  "Topic :: Text Processing :: Markup :: Markdown",
+]
+
+[project.urls]
+Repository = "https://github.com/dahlia/markdown-gfm-admonition"
+"Issue Tracker" = "https://github.com/dahlia/markdown-gfm-admonition/issues"
+
+[project.entry-points."markdown.extensions"]
+gfm_admonition = "markdown_gfm_admonition:GfmAdmonitionExtension"
+
+[tool.setuptools]
+py-modules = ["markdown_gfm_admonition"]

@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "the-compiler.python-tox",
+    "editorconfig.editorconfig"
+  ]
+}
