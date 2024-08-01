@@ -23,7 +23,7 @@ class GfmAdmonitionExtension(Extension):
 class GfmAdmonitionProcessor(BlockProcessor):
     PATTERN = re.compile(r"""
         ^ \s*
-        \[ ! ( NOTE | TIP | IMPORTANT | WARNING | CAUTION ) \]
+        \\? \[ ! ( NOTE | TIP | IMPORTANT | WARNING | CAUTION ) \\? \]
         (?: $ | (?: [ ] [ ] )? \n )
     """, re.VERBOSE)
 

@@ -104,6 +104,22 @@ class GfmAdmonitionTestCase(TestCase):
             result
         )
 
+    def testEscapedBrackets(self):
+        result = self.md.convert(
+            "> \\[!TIP\\]\n"
+            "> Optional information to help a user be more successful.\n"
+            "\n"
+            "---\n"
+            "> This is not an admonition block.\n"
+        )
+        self.assertHtmlEqual(
+            '<div class="admonition tip"><p class="admonition-title">Tip</p>'
+            "<p>Optional information to help a user be more successful.</p>"
+            "</div><hr></hr><blockquote><p>This is not an admonition block.</p>"
+            "</blockquote>",
+            result
+        )
+
 
 if __name__ == "__main__":
     main()
