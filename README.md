@@ -10,17 +10,17 @@ the [admonition syntax of GitHub Flavored Markdown][1].
 There are five types of admonitions:
 
 ~~~~ markdown
-> [!NOTE]  
+> [!NOTE]
 > Highlights information that users should take into account,
 > even when skimming.
 
 > [!TIP]
 > Optional information to help a user be more successful.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Crucial information necessary for users to succeed.
 
-> [!WARNING]  
+> [!WARNING]
 > Critical content demanding immediate user attention due to potential risks.
 
 > [!CAUTION]
@@ -45,3 +45,35 @@ even when skimming.</p>
 [Python Markdown]: https://github.com/Python-Markdown/markdown
 [1]: https://github.com/orgs/community/discussions/16925
 [2]: https://python-markdown.github.io/extensions/admonition/
+
+
+Usage
+-----
+
+To use this extension, you need to install it first:
+
+~~~~ bash
+pip install markdown-gfm-admonition
+~~~~
+
+Then, you can use it in your Python code like this:
+
+~~~~ python
+from markdown import Markdown
+from markdown_gfm_admonition import GfmAdmonitionExtension
+
+md = Markdown(extensions=[GfmAdmonitionExtension()])
+html = md.convert("""
+> [!NOTE]
+> Highlights information that users should take into account,
+> even when skimming.
+""")
+~~~~
+
+> [!TIP]
+> Instead of importing `GfmAdmonitionExtension` directly, you can use
+> the entry point `"gfm_admonition"` as well to load the extension:
+>
+> ~~~~ python
+> md = Markdown(extensions=["gfm_admonition"])
+> ~~~~
