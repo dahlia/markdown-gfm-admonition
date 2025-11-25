@@ -4,8 +4,8 @@
 
 - **Run all tests:** `python test.py` (uses unittest)
 - **Run single test:** `python -m unittest test.GfmAdmonitionTestCase.testNote`
-- **Run with tox:** `tox` (tests against multiple Python/Markdown versions)
-- **Build package:** `python -m build`
+- **Run with tox:** `uvx --with tox-uv tox` (tests against multiple Python/Markdown versions)
+- **Build package:** `uv build`
 
 ## Code Style
 

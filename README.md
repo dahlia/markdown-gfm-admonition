@@ -53,6 +53,8 @@ Usage
 To use this extension, you need to install it first:
 
 ~~~~ bash
+uv add markdown-gfm-admonition
+# or
 pip install markdown-gfm-admonition
 ~~~~
 

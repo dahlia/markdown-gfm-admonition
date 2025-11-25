@@ -1,4 +1,5 @@
 *.egg-info/
+.claude/settings.local.json
 .tox/
 __pycache__/
 dist/

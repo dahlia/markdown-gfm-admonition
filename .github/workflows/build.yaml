@@ -13,27 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
-    - uses: actions/setup-python@v4
-      with:
-        python-version: 'pypy3.10'
+    - uses: astral-sh/setup-uv@v5
     - run: |
         set -e
-        python3.12 -m pip install tox
+        uv tool install tox --with tox-uv
         tox
 
   publish:
@@ -47,14 +30,8 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    - run: |
-        set -e
-        python3 -m pip install --upgrade pip
-        pip3 install build
-        python3 -m build
+    - uses: astral-sh/setup-uv@v5
+    - run: uv build
     - uses: actions/upload-artifact@v4
       with:
         name: dist
