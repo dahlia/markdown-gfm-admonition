@@ -120,6 +120,28 @@ class GfmAdmonitionTestCase(TestCase):
             result
         )
 
+    def testLowercaseNote(self):
+        result = self.md.convert(
+            "> [!note]\n"
+            "> This is a lowercase note.\n"
+        )
+        self.assertHtmlEqual(
+            '<div class="admonition note"><p class="admonition-title">'
+            "Note</p><p>This is a lowercase note.</p></div>",
+            result
+        )
+
+    def testMixedCaseTip(self):
+        result = self.md.convert(
+            "> [!Tip]\n"
+            "> This is a mixed case tip.\n"
+        )
+        self.assertHtmlEqual(
+            '<div class="admonition tip"><p class="admonition-title">'
+            "Tip</p><p>This is a mixed case tip.</p></div>",
+            result
+        )
+
 
 if __name__ == "__main__":
     main()

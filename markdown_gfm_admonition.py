@@ -25,7 +25,7 @@ class GfmAdmonitionProcessor(BlockProcessor):
         ^ \s*
         \\? \[ ! ( NOTE | TIP | IMPORTANT | WARNING | CAUTION ) \\? \]
         (?: $ | (?: [ ] [ ] )? \n )
-    """, re.VERBOSE)
+    """, re.VERBOSE | re.IGNORECASE)
 
     def __init__(self, parser: BlockParser):
         super().__init__(parser)
