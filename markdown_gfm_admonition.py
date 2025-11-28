@@ -1,11 +1,11 @@
 import re
 from typing import List, Optional
-from xml.etree.ElementTree import Element, SubElement
 
-from markdown.blockparser import BlockParser
-from markdown.blockprocessors import BlockProcessor
 from markdown.core import Markdown
 from markdown.extensions import Extension
+from markdown.blockprocessors import BlockProcessor
+from markdown.blockparser import BlockParser
+from xml.etree.ElementTree import Element, SubElement
 
 __all__ = ["GfmAdmonitionExtension", "GfmAdmonitionProcessor", "makeExtension"]
 
@@ -14,21 +14,19 @@ class GfmAdmonitionExtension(Extension):
     def extendMarkdown(self, md: Markdown) -> None:
         md.registerExtension(self)
         md.parser.blockprocessors.register(
-            GfmAdmonitionProcessor(md.parser), "gfm_admonition", 105
+            GfmAdmonitionProcessor(md.parser),
+            "gfm_admonition",
+            105
         )
 
 
 class GfmAdmonitionProcessor(BlockProcessor):
-    PATTERN = re.compile(
-        r"""
+    PATTERN = re.compile(r"""
         ^ \s*
         \\? \[ ! ( NOTE | TIP | IMPORTANT | WARNING | CAUTION ) \\? \]
-        [ ]? (.*)
-        (?: [ ]+ (.*) )?
+        [ ]? ( [^\n]* )
         (?: $ | (?: [ ] [ ] )? \n )
-    """,
-        re.VERBOSE | re.IGNORECASE,
-    )
+    """, re.VERBOSE | re.IGNORECASE)
 
     def __init__(self, parser: BlockParser):
         super().__init__(parser)
@@ -43,14 +41,13 @@ class GfmAdmonitionProcessor(BlockProcessor):
         if not blocks:
             return False
         match = self.PATTERN.match(blocks[0])
-        blocks[0] = blocks[0][match.end() :]
+        blocks[0] = blocks[0][match.end():]
         type_ = match.group(1).lower()
-        override_title = match.group(2)
+        override_title = match.group(2).strip() if match.group(2) else None
         parent.tag = "div"
         parent.set("class", "admonition " + type_)
         title = SubElement(parent, "p")
         title.set("class", "admonition-title")
-        title.text = override_title if override_title else type_.capitalize()
         title.text = override_title if override_title else type_.capitalize()
         self.parser.parseBlocks(parent, blocks)
         blocks.clear()

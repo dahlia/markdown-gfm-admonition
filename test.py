@@ -9,13 +9,11 @@ from markdown_gfm_admonition import GfmAdmonitionExtension
 
 class GfmAdmonitionTestCase(TestCase):
     def setUp(self) -> None:
-        ext = choice(
-            [
-                GfmAdmonitionExtension(),
-                "markdown_gfm_admonition:GfmAdmonitionExtension",
-                "gfm_admonition",
-            ]
-        )
+        ext = choice([
+            GfmAdmonitionExtension(),
+            "markdown_gfm_admonition:GfmAdmonitionExtension",
+            "gfm_admonition",
+        ])
         self.md = Markdown(extensions=[ext])
 
     def assertHtmlEqual(self, expected: str, actual: str):
@@ -47,7 +45,7 @@ class GfmAdmonitionTestCase(TestCase):
             '<hr></hr><div class="admonition note"><p class="admonition-title">'
             "Note</p><p>Highlights information that users should take into "
             "account,\neven when skimming.</p></div>",
-            result,
+            result
         )
 
     def testTip(self):
@@ -63,18 +61,20 @@ class GfmAdmonitionTestCase(TestCase):
             "<p>Optional information to help a user be more successful.</p>"
             "</div><hr></hr><blockquote><p>This is not an admonition block.</p>"
             "</blockquote>",
-            result,
+            result
         )
 
     def testImportant(self):
         result = self.md.convert(
-            "> [!IMPORTANT]\n>\n> Crucial information necessary for users to succeed."
+            "> [!IMPORTANT]\n"
+            ">\n"
+            "> Crucial information necessary for users to succeed."
         )
         self.assertHtmlEqual(
             '<div class="admonition important"><p class="admonition-title">'
             "Important</p><p>Crucial information necessary for users to "
             "succeed.</p></div>",
-            result,
+            result
         )
 
     def testWarning(self):
@@ -88,18 +88,20 @@ class GfmAdmonitionTestCase(TestCase):
             '<div class="admonition warning"><p class="admonition-title">'
             "Warning</p><p>Critical content demanding immediate user attention "
             "due to potential risks.</p></div>",
-            result,
+            result
         )
 
     def testCuation(self):
         result = self.md.convert(
-            "> [!CAUTION]\n> \n> Negative potential consequences of an action."
+            "> [!CAUTION]\n"
+            "> \n"
+            "> Negative potential consequences of an action."
         )
         self.assertHtmlEqual(
             '<div class="admonition caution"><p class="admonition-title">'
             "Caution</p><p>Negative potential consequences of an action.</p>"
             "</div>",
-            result,
+            result
         )
 
     def testEscapedBrackets(self):
@@ -115,33 +117,41 @@ class GfmAdmonitionTestCase(TestCase):
             "<p>Optional information to help a user be more successful.</p>"
             "</div><hr></hr><blockquote><p>This is not an admonition block.</p>"
             "</blockquote>",
-            result,
+            result
         )
 
     def testLowercaseNote(self):
-        result = self.md.convert("> [!note]\n> This is a lowercase note.\n")
+        result = self.md.convert(
+            "> [!note]\n"
+            "> This is a lowercase note.\n"
+        )
         self.assertHtmlEqual(
             '<div class="admonition note"><p class="admonition-title">'
             "Note</p><p>This is a lowercase note.</p></div>",
-            result,
+            result
         )
 
     def testMixedCaseTip(self):
-        result = self.md.convert("> [!Tip]\n> This is a mixed case tip.\n")
+        result = self.md.convert(
+            "> [!Tip]\n"
+            "> This is a mixed case tip.\n"
+        )
         self.assertHtmlEqual(
             '<div class="admonition tip"><p class="admonition-title">'
             "Tip</p><p>This is a mixed case tip.</p></div>",
-            result,
+            result
         )
 
     def testTitleOverride(self):
         result = self.md.convert(
-            "> [!NOTE] My Custom Title\n> This is a note with a custom title.\n"
+            "> [!NOTE] My Custom Title\n"
+            "> This is a note with a custom title.\n"
         )
         self.assertHtmlEqual(
             '<div class="admonition note"><p class="admonition-title">'
-            "My Custom Title</p><p>This is a note with a custom title.</p></div>",
-            result,
+            "My Custom Title</p><p>This is a note with a custom title.</p>"
+            "</div>",
+            result
         )
 
 
