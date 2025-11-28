@@ -24,6 +24,7 @@ class GfmAdmonitionProcessor(BlockProcessor):
     PATTERN = re.compile(r"""
         ^ \s*
         \\? \[ ! ( NOTE | TIP | IMPORTANT | WARNING | CAUTION ) \\? \]
+        [ ]? ( [^\n]* )
         (?: $ | (?: [ ] [ ] )? \n )
     """, re.VERBOSE | re.IGNORECASE)
 
@@ -42,11 +43,12 @@ class GfmAdmonitionProcessor(BlockProcessor):
         match = self.PATTERN.match(blocks[0])
         blocks[0] = blocks[0][match.end():]
         type_ = match.group(1).lower()
+        override_title = match.group(2).strip() if match.group(2) else None
         parent.tag = "div"
         parent.set("class", "admonition " + type_)
         title = SubElement(parent, "p")
         title.set("class", "admonition-title")
-        title.text = type_.capitalize()
+        title.text = override_title if override_title else type_.capitalize()
         self.parser.parseBlocks(parent, blocks)
         blocks.clear()
         return True

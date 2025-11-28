@@ -142,6 +142,18 @@ class GfmAdmonitionTestCase(TestCase):
             result
         )
 
+    def testTitleOverride(self):
+        result = self.md.convert(
+            "> [!NOTE] My Custom Title\n"
+            "> This is a note with a custom title.\n"
+        )
+        self.assertHtmlEqual(
+            '<div class="admonition note"><p class="admonition-title">'
+            "My Custom Title</p><p>This is a note with a custom title.</p>"
+            "</div>",
+            result
+        )
+
 
 if __name__ == "__main__":
     main()
